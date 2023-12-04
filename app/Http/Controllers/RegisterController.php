@@ -22,6 +22,7 @@ class RegisterController extends Controller
         $user = new User();
         $user->meno = $request->username;
         $user->heslo = Hash::make($request->password);
+        $user->obrazok_profil = 'images/defaultProfilePicture.png';
         $user->save();
         Auth::login($user);
         return redirect()->route('home');

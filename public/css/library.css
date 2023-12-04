@@ -1,0 +1,120 @@
+body {
+    background: #E5EBFF;
+}
+
+.logoWebu {
+    width: 20%;
+    height: auto;
+}
+
+#navbarSupportedContent {
+    background-color: #687598;
+    padding: 10px;
+}
+
+.hladajTitulokLabel {
+    width: 250px;
+}
+
+.navbar {
+    background: #687598;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: 60px;
+}
+
+.hlavnaNavigacia {
+    position: sticky;
+    top: 65px;
+    border: 1px solid black;
+}
+
+.hlavnaNavigaciaItem {
+    border: 1px solid black;
+}
+
+.nav-item:hover {
+    box-shadow: 0 2px 0 white;
+    cursor: pointer;
+}
+
+.footer .col:hover {
+    box-shadow: 0 2px 0 white;
+    cursor: pointer;
+}
+
+.footer {
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    background: #687598;
+    position: fixed;
+    bottom: 0;
+}
+
+:root {
+    --bs-emphasis-color-rgb: 255,255,255;
+    --bs-body-font-family: "Calibri", "Arial", sans-serif;
+}
+
+.hlavnaNavigacia .nav-link {
+    color: #0d3dbd;
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.btn {
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.btn:hover {
+    background-color: #cdd6ff;
+}
+
+.card .btn {
+    max-width: 80%;
+    height: 25px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 0;
+}
+
+.card .btn:hover {
+    background-color: green;
+}
+
+.scrollable {
+    max-height: calc(100vh - 325px);
+    overflow-y: auto;
+}
+
+.card {
+    height: auto;
+}
+
+.card .img-fluid {
+    width: auto;
+    height: inherit;
+}
+
+.form-label {
+    font-size: 1.3rem;
+}
+
+@media (max-width: 576px) {
+    .card .btn .bi {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .scrollable {
+        height: 70vh;
+        margin-bottom: 100px;
+    }
+
+    #prehladajKniznicuLabel {
+        margin-top: 50px;
+    }
+}

@@ -13,7 +13,8 @@ class User extends Authenticate
         'meno',
         'heslo',
         'email',
-        'stav_uctu'
+        'stav_uctu',
+        'obrazok_profil'
     ];
 
     public $timestamps = false;

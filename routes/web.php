@@ -3,6 +3,7 @@
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,7 @@ Route::post('/logout', 'App\Http\Controllers\LoginController@logout')->name('log
 Route::get('/register', 'App\Http\Controllers\RegisterController@index')->name('register.show');
 Route::post('/register', 'App\Http\Controllers\RegisterController@register')->name('register');
 
-Route::get('/test', function () {
-    return view('layouts.app');
-});
+Route::get('/library', 'App\Http\Controllers\LibraryController@index')->name('library');
+
+Route::get('/profile', 'App\Http\Controllers\ProfileController@index')->name('profile')->middleware('auth');
+Route::post('/profile', 'App\Http\Controllers\ProfileController@updatePicture')->name('profile.update.picture');

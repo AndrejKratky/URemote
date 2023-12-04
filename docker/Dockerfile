@@ -95,3 +95,5 @@ COPY php_user.ini /usr/local/etc/php/conf.d/
 RUN addgroup -g $GROUP_ID $GROUP
 RUN adduser -D -u $USER_ID -G $GROUP $USER
 USER $USER
+
+RUN ln -sf /var/www/storage/app/public /var/www/public/storage
