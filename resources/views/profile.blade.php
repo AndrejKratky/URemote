@@ -11,16 +11,15 @@
 @endsection
 
 @section('content')
-    <div class="container mt-4">
+    <div class="container mt-4 mb-4">
         <h1>Vitaj, {{Auth::user()->meno}}!</h1>
         <div class="row">
             <div class="col-md-4">
-                @if ($user->obrazok_profil && $user->obrazok_profil != 'defaultProfilePicture.png')
+                @if ($user->obrazok_profil != 'images/defaultProfilePicture.png')
                     <img src="{{ Storage::disk('public')->url($user->obrazok_profil) }}" alt="Profile Picture" class="obrProfil">
                 @else
                     <img src="{{ asset('images/defaultProfilePicture.png') }}" alt="Profile Picture" class="obrProfil">
                 @endif
-
             </div>
             <div class="col-md-8">
                 <h3>Meno: {{Auth::user()->meno}}</h3>
@@ -36,23 +35,26 @@
             </div>
         </div>
 
-        <form action="" method="POST">
+        <form action="{{ route('profile.update.name') }}" method="POST" enctype="multipart/form-data">
+            @csrf
             <div class="mb-3">
-                <label for="name" class="form-label">Zmeň meno</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="New Name">
+                <label for="meno" class="form-label"></label>
+                <input type="text" class="form-control" id="meno" name="meno" placeholder="Zadajte Vaše nové používateľské meno...">
             </div>
             <button type="submit" class="btn btn-primary">Zmeň meno</button>
         </form>
 
-        <form action="" method="POST">
+        <form action="{{ route('profile.update.password') }}" method="POST" enctype="multipart/form-data">
+            @csrf
             <div class="mb-3">
-                <label for="password" class="form-label">Zmeň heslo</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="New Password">
+                <label for="heslo" class="form-label"></label>
+                <input type="password" class="form-control" id="heslo" name="heslo" placeholder="Zadajte Vaše nové heslo...">
             </div>
             <button type="submit" class="btn btn-primary">Aktualizuj heslo</button>
         </form>
 
-        <form action="" method="POST">
+        <form action="{{ route('profile.delete.user') }}" method="POST">
+            @csrf
             <button type="submit" class="btn btn-danger mt-3">Odstráň účet</button>
         </form>
     </div>

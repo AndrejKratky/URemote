@@ -21,4 +21,32 @@ class ProfileController extends Controller
         $user->save();
         return redirect()->route('profile');
     }
+
+    public function updateName (Request $request) {
+        $request->validate(['meno'=>'required|string|max:255|unique:users,meno']);
+        $user = Auth::user();
+        $user->meno = $request->meno;
+        $user->save();
+        return redirect()->route('profile');
+    }
+
+    public function updatePassword (Request $request) {
+        $request->validate(['heslo'=>'required|string|min:5|confirmed']);
+        $user = Auth::user();
+        $user->heslo = Hash::make($request->heslo);
+        $user->save();
+        return redirect()->route('profile');
+    }
+
+    public function deleteUser (Request $request) {
+        $user = Auth::user();
+
+        if ($user->obrazok_profil != 'defaultProfilePicture.png') {
+            Storage::disk('public')->delete($user->obrazok_profil);
+        }
+
+        $user->delete();
+        Auth::logout();
+        return redirect()->route('home');
+    }
 }
