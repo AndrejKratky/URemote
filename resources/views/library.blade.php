@@ -57,121 +57,36 @@
                 </form>
 
                 <div class="scrollable me-3">
-                    <div class="card mb-1">
-                        <div class="row g-0">
-                            <div class="col-lg-1 d-none d-lg-flex align-items-center justify-content-center">
-                                <img src="images/bookThumbnails/kniha1.jpg" alt="Book Cover" class="img-fluid" data-bs-toggle="modal" data-bs-target="#kniha1">
-                            </div>
-                            <div class="modal fade" id="kniha1" tabindex="-1" role="dialog" aria-labelledby="kniha1" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-body">
-                                            <img src="images/bookThumbnails/kniha1.jpg" class="img-fluid d-block mx-auto" alt="Book Cover">
+                    @foreach($books as $book)
+                        <div class="card mb-1">
+                            <div class="row g-0">
+                                <div class="col-lg-1 d-none d-lg-flex align-items-center justify-content-center">
+                                    <img src="{{$book->obal_knihy}}" alt="Book Cover" class="img-fluid" data-bs-toggle="modal" data-bs-target="#kniha{{ $book->id }}">
+                                </div>
+                                <div class="modal fade" id="kniha{{ $book->id }}" tabindex="-1" role="dialog" aria-labelledby="kniha{{ $book->id }}" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                                <img src="{{$book->obal_knihy}}" class="img-fluid d-block mx-auto" alt="Book Cover">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-8 col-lg-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">Civilná ochrana a riešenie krízových javov</h5>
-                                    <h6>Jozef Kubás, Mária Polorecká, Patrik Mitrenga</h6>
-                                    <a href="podrobnostiKnihy.html" class="text-nowrap">Zobraz podrobnosti</a>
-                                </div>
-                            </div>
-                            <div class="col-4 col-lg-3 d-flex flex-column justify-content-center">
-                                <button class="btn btn-success" type="submit"><i class="bi bi-cart"></i> Kúpiť</button>
-                                <button class="btn btn-success" type="submit"><i class="bi bi-calendar"></i> Vypožičať</button>
-                                <button class="btn btn-success" type="submit"><i class="bi bi-book"></i> Čítať</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card mb-1">
-                        <div class="row g-0">
-                            <div class="col-lg-1 d-none d-lg-flex align-items-center justify-content-center">
-                                <img src="images/bookThumbnails/kniha2.jpg" alt="Book Cover" class="img-fluid" data-bs-toggle="modal" data-bs-target="#kniha2">
-                            </div>
-                            <div class="modal fade" id="kniha2" tabindex="-1" role="dialog" aria-labelledby="kniha2" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-body">
-                                            <img src="images/bookThumbnails/kniha2.jpg" class="img-fluid d-block mx-auto" alt="Book Cover">
-                                        </div>
+                                <div class="col-8 col-lg-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{$book->nazov}}</h5>
+                                        <h6>{{ str_replace('_', ' ', $book->autori) }}</h6>
+                                        <a href="podrobnostiKnihy.html" class="text-nowrap">Zobraz podrobnosti</a>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-8 col-lg-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">Micro:bit krok za krokem: praktický úvod do programování a elektroniky</h5>
-                                    <h6>Martin Malý</h6>
-                                    <a href="podrobnostiKnihy.html" class="text-nowrap">Zobraz podrobnosti</a>
+                                <div class="col-4 col-lg-3 d-flex flex-column justify-content-center">
+                                    <button class="btn btn-success" type="submit"><i class="bi bi-cart"></i> Kúpiť</button>
+                                    <button class="btn btn-success" type="submit"><i class="bi bi-calendar"></i> Vypožičať</button>
+                                    <button class="btn btn-success" type="submit"><i class="bi bi-book"></i> Čítať</button>
                                 </div>
-                            </div>
-                            <div class="col-4 col-lg-3 d-flex flex-column justify-content-center">
-                                <button class="btn btn-success" type="submit"><i class="bi bi-cart"></i> Kúpiť</button>
-                                <button class="btn btn-success" type="submit"><i class="bi bi-calendar"></i> Vypožičať</button>
-                                <button class="btn btn-success" type="submit"><i class="bi bi-book"></i> Čítať</button>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="card mb-1">
-                        <div class="row g-0">
-                            <div class="d-none col-lg-1 d-lg-flex align-items-center justify-content-center">
-                                <img src="images/bookThumbnails/kniha3.jpg" alt="Book Cover" class="img-fluid" data-bs-toggle="modal" data-bs-target="#kniha3">
-                            </div>
-                            <div class="modal fade" id="kniha3" tabindex="-1" role="dialog" aria-labelledby="kniha3" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-body">
-                                            <img src="images/bookThumbnails/kniha3.jpg" class="img-fluid d-block mx-auto" alt="Book Cover">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-8 col-lg-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">Klimatická krize a zelená dohoda</h5>
-                                    <h6>Noam Chomsky, Robert Pollin, C. J. Polychroniou</h6>
-                                    <a href="podrobnostiKnihy.html" class="text-nowrap">Zobraz podrobnosti</a>
-                                </div>
-                            </div>
-                            <div class="col-4 col-lg-3 d-flex flex-column justify-content-center">
-                                <button class="btn btn-success" type="submit"><i class="bi bi-cart"></i> Kúpiť</button>
-                                <button class="btn btn-success" type="submit"><i class="bi bi-calendar"></i> Vypožičať</button>
-                                <button class="btn btn-success" type="submit"><i class="bi bi-book"></i> Čítať</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card mb-1">
-                        <div class="row g-0">
-                            <div class="d-none col-lg-1 d-lg-flex align-items-center justify-content-center">
-                                <img src="images/bookThumbnails/kniha4.jpg" alt="Book Cover" class="img-fluid" data-bs-toggle="modal" data-bs-target="#kniha4">
-                            </div>
-                            <div class="modal fade" id="kniha4" tabindex="-1" role="dialog" aria-labelledby="kniha4" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-body">
-                                            <img src="images/bookThumbnails/kniha4.jpg" class="img-fluid d-block mx-auto" alt="Book Cover">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-8 col-lg-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">Podnikanie v doprave</h5>
-                                    <h6>Bibiána Buková, Eva Brumerčíková</h6>
-                                    <a href="podrobnostiKnihy.html" class="text-nowrap">Zobraz podrobnosti</a>
-                                </div>
-                            </div>
-                            <div class="col-4 col-lg-3 d-flex flex-column justify-content-center">
-                                <button class="btn btn-success" type="submit"><i class="bi bi-cart"></i> Kúpiť</button>
-                                <button class="btn btn-success" type="submit"><i class="bi bi-calendar"></i> Vypožičať</button>
-                                <button class="btn btn-success" type="submit"><i class="bi bi-book"></i> Čítať</button>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
