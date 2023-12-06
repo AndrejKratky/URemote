@@ -36,5 +36,5 @@ Route::post('/profile/updateName', 'App\Http\Controllers\ProfileController@updat
 Route::post('/profile/updatePassword', 'App\Http\Controllers\ProfileController@updatePassword')->name('profile.update.password');
 Route::post('/profile/deleteUser', 'App\Http\Controllers\ProfileController@deleteUser')->name('profile.delete.user');
 
-Route::get('/addBook', 'App\Http\Controllers\BookController@index')->name('addBook');
-Route::post('/addBook', 'App\Http\Controllers\BookController@insert')->name('addBook.insert');
+Route::get('/addBook', 'App\Http\Controllers\BookController@index')->name('addBook')->middleware('admin');
+Route::post('/addBook', 'App\Http\Controllers\BookController@insert')->name('addBook.insert')->middleware('admin');
