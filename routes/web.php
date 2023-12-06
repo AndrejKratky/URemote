@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Book;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
@@ -34,3 +35,6 @@ Route::post('/profile/updatePicture', 'App\Http\Controllers\ProfileController@up
 Route::post('/profile/updateName', 'App\Http\Controllers\ProfileController@updateName')->name('profile.update.name');
 Route::post('/profile/updatePassword', 'App\Http\Controllers\ProfileController@updatePassword')->name('profile.update.password');
 Route::post('/profile/deleteUser', 'App\Http\Controllers\ProfileController@deleteUser')->name('profile.delete.user');
+
+Route::get('/addBook', 'App\Http\Controllers\BookController@index')->name('addBook');
+Route::post('/addBook', 'App\Http\Controllers\BookController@insert')->name('addBook.insert');

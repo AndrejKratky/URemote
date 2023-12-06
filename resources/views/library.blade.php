@@ -39,6 +39,10 @@
                     </div>
                     <button type="submit" class="btn btn-light">Aplikuj filtre</button>
                 </form>
+
+                @if (Auth::check() && Auth::user()->meno == 'admin')
+                    <a href="{{route('addBook')}}" class="btn btn-light" style="margin-top: 20px">Pridaj titulok</a>
+                @endif
             </div>
 
             <div class="col-md-9">
