@@ -127,6 +127,16 @@ body {
     width: 80vh;
 }
 
+.col-form-label {
+    font-size: 1.2rem;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+#errorOutput div:last-child {
+    margin-bottom: 10px;
+}
+
 @media (max-width: 768px) {
     .loginContent {
         width: 60vh;

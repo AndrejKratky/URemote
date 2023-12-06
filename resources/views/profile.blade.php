@@ -12,7 +12,7 @@
 
 @section('content')
     <div class="container mt-4 mb-4">
-        <h1>Vitaj, {{Auth::user()->meno}}!</h1>
+        <h1>Vitaj, {{$user->meno}}!</h1>
         <div class="row">
             <div class="col-md-4">
                 @if ($user->obrazok_profil != 'images/defaultProfilePicture.png')
@@ -22,7 +22,21 @@
                 @endif
             </div>
             <div class="col-md-8">
-                <h3>Meno: {{Auth::user()->meno}}</h3>
+                <h3>Meno: {{$user->meno}}</h3>
+                <h4>
+                    Predplatné:
+                    @if($user->stav_uctu == 'F')
+                        <span class="badge text-bg-secondary">URemote Free</span>
+                    @elseif($user->stav_uctu == 'U')
+                        <span class="badge text-bg-primary">URemote Standard</span>
+                    @elseif($user->stav_uctu == 'P')
+                        <span class="badge text-bg-warning">URemote Premium</span>
+                    @elseif($user->stav_uctu == 'S')
+                        <span class="badge text-bg-success">URemote Student</span>
+                    @elseif($user->stav_uctu == 'L')
+                        <span class="badge text-bg-info">URemote Lecturer</span>
+                    @endif
+                </h4>
                 <p><strong>Email:</strong> email</p>
                 <form action="{{route('profile.update.picture')}}" method="POST" enctype="multipart/form-data">
                     @csrf

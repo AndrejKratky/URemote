@@ -13,17 +13,26 @@
             <div class="col-6 loginContent">
                 <div class="card">
                     <div class="card-body">
-                        <h2 class="text-center mb-4 loginText">Prihlásenie</h2>
+                        <h2 class="text-center mb-3 loginText">Prihlásenie</h2>
+
+                        @if ($errors->any())
+                            <div id="loginError">
+                                @foreach ($errors->all() as $error)
+                                    <p style="color: red; margin: 0; background-color: #ffcccc; border-radius: 5px; text-align: center">{{ $error }}</p>
+                                @endforeach
+                            </div>
+                        @endif
+
                         <form action = "{{route('login.action')}}" method="post">
                             @csrf
                             <div class="form-group mb-3">
                                 <label for="username">Prihlasovacie meno:</label>
-                                <input type="text" id="meno" name="meno" class="form-control" required>
+                                <input type="text" id="meno" name="meno" class="form-control">
                             </div>
 
                             <div class="form-group mb-3">
                                 <label for="password">Heslo:</label>
-                                <input type="password" id="heslo" name="heslo" class="form-control" required>
+                                <input type="password" id="heslo" name="heslo" class="form-control">
                             </div>
 
                             <div class="row d-none d-sm-flex">
@@ -43,7 +52,7 @@
                                 </div>
                                 <div class="col-12 col-sm-4 d-flex justify-content-center">
                                     <!--<button type="submit" class="btn btn-light">Registrácia</button>-->
-                                    <a href="{{route('register')}}" class="btn btn-light">Registrácia</a>
+                                    <a href="{{route('register.show')}}" class="btn btn-light">Registrácia</a>
                                 </div>
                             </div>
                         </form>

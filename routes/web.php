@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Storage;
 Route::redirect('/', '/home');
 
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
+Route::post('/home/updatePlan/{plan}', 'App\Http\Controllers\HomeController@updatePlan')->name('update.plan')->middleware('auth');
 
 Route::get('/login', 'App\Http\Controllers\LoginController@index')->name('login');
 Route::post('/login', 'App\Http\Controllers\LoginController@login')->name('login.action');

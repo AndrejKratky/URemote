@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('custom_css')
-    <link rel="stylesheet" href="{{asset("css/index.css")}}">
+    <link rel="stylesheet" href="{{asset("css/home.css")}}">
 @endsection
 
 @section('banner')
@@ -166,7 +166,10 @@
                         </ul>
                         <div class="mt-auto">
                             <h3 class="card-text text-center">5€ / mesiac</h3>
-                            <a href="#" class="btn btn-success w-100">Zakúpiť predplatné</a>
+                            <form action="{{route('update.plan', 'standard')}}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-success w-100">Zakúpiť predplatné</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -185,7 +188,10 @@
                         </ul>
                         <div class="mt-auto">
                             <p class="card-text text-center" id="premiumText">8,50€/mesiac alebo 80€/rok</p>
-                            <a href="#" class="btn btn-success w-100">Zakúpiť predplatné</a>
+                            <form action="{{route('update.plan', 'premium')}}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-success w-100">Zakúpiť predplatné</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -203,7 +209,10 @@
                         </ul>
                         <div class="mt-auto">
                             <h3 class="card-text text-center">35€ / 1 akademický rok</h3>
-                            <a href="#" class="btn btn-success w-100">Zakúpiť predplatné</a>
+                            <form action="{{route('update.plan', 'student')}}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-success w-100">Zakúpiť predplatné</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -223,7 +232,10 @@
                         </ul>
                         <div class="mt-auto">
                             <h3 class="card-text text-center">20€ / 1 akademický rok</h3>
-                            <a href="#" class="btn btn-success w-100">Zakúpiť predplatné</a>
+                            <form action="{{route('update.plan', 'lecturer')}}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-success w-100">Zakúpiť predplatné</button>
+                            </form>
                         </div>
                     </div>
                 </div>

@@ -17,7 +17,7 @@
                 <li>
                     <form class="d-flex" role="search">
                         <input class="form-control me-2 hladajTitulokLabel" type="search" placeholder="Zadaj názov hľadaného titulku..." aria-label="Search">
-                        <button type="button" class="btn btn-outline-light">Hľadaj</button>
+                        <button type="button" class="btn btn-outline-light" style="margin-right: 12px">Hľadaj</button>
                     </form>
                 </li>
 

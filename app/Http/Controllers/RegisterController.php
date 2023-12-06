@@ -17,12 +17,18 @@ class RegisterController extends Controller
     {
         $request->validate([
             'username' => 'required|unique:users,meno',
-            'password' => 'required'
+            'password' => 'required',
+            'email' => 'nullable|email|unique:users,email'
         ]);
         $user = new User();
         $user->meno = $request->username;
         $user->heslo = Hash::make($request->password);
         $user->obrazok_profil = 'images/defaultProfilePicture.png';
+
+        if ($request->has('email') && $request->email != '') {
+            $user->email = $request->email;
+        }
+
         $user->save();
         Auth::login($user);
         return redirect()->route('home');

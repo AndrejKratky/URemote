@@ -27,7 +27,9 @@ class LoginController extends Controller
             return redirect('home');
         }
 
-        return "ERROR";
+        return back()->withErrors([
+            'loginError' => 'Zadali ste neplatné prihlasovacie údaje.'
+        ]);
     }
 
     public function logout(Request $request) {
