@@ -29,7 +29,7 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><a class="dropdown-item" href="{{route('profile')}}">Môj Profil</a></li>
-                            <li><a class="dropdown-item" href="#">Moja Knižnica</a></li>
+                            <li><a class="dropdown-item" href="{{route('myLibrary')}}">Moja Knižnica</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li class="nav-item">
                                 <a class="dropdown-item" href="{{ route('logout') }}"

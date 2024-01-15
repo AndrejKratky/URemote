@@ -2,6 +2,9 @@
 @section('custom_css')
     <link rel="stylesheet" href="{{asset("css/library.css")}}">
 @endsection
+@section('custom_head')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+@endsection
 @section('banner')
     <div class="container-fluid mainHeaderBanner">
         <img src="{{asset("images/logoText.png")}}" class="img-fluid logoWebu" alt="logo">
@@ -80,9 +83,9 @@
                                     </div>
                                 </div>
                                 <div class="col-4 col-lg-3 d-flex flex-column justify-content-center">
-                                    <button class="btn btn-success" type="submit"><i class="bi bi-cart"></i> Kúpiť</button>
-                                    <button class="btn btn-success" type="submit"><i class="bi bi-calendar"></i> Vypožičať</button>
-                                    <button class="btn btn-success" type="submit"><i class="bi bi-book"></i> Čítať</button>
+                                    <button class="btn btn-success btn-buy" type="submit" data-book-id="{{ $book->id }}"><i class="bi bi-cart"></i> Kúpiť</button>
+                                    <button class="btn btn-success btn-borrow" type="submit" data-book-id="{{ $book->id }}"><i class="bi bi-calendar"></i> Vypožičať</button>
+                                    <button class="btn btn-success btn-read" type="submit" data-book-id="{{ $book->id }}"><i class="bi bi-book"></i> Čítať</button>
                                 </div>
                             </div>
                         </div>
@@ -93,5 +96,9 @@
     </div>
 @endsection
 @section('scripts')
+    <script>
+        const isAuthenticated = {{Auth::check() ? 'true' : 'false'}};
+        const userId = {{ Auth::check() ? Auth::user()->id : 'null' }};
+    </script>
     <script src="{{asset("js/library.js")}}"></script>
 @endsection
