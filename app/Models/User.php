@@ -31,4 +31,9 @@ class User extends Authenticate
     {
         return $this->heslo;
     }
+
+    public function userBooks()
+    {
+        return $this->belongsToMany(Book::class, 'user_books', 'pouzivatel_id', 'kniha_id');
+    }
 }

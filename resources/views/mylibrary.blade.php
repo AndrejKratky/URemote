@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('custom_css')
-
+    <link rel="stylesheet" href="{{asset("css/library.css")}}">
 @endsection
 
 @section('banner')
@@ -25,7 +25,7 @@
                 <tbody>
                 @foreach($userBooks as $book)
                     <tr>
-                        <td></td>
+                        <td>{{ $book->id }}</td>
                         <td></td>
                         <td></td>
                     </tr>
