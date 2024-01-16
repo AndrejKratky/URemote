@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
             })
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data);
+                    window.alert(data.message);
                 })
                 .catch(error => console.error('Error:', error));
         } else if (action === 'borrow') {
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
             })
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data);
+                    window.alert(data.message);
                 })
                 .catch(error => console.error('Error:', error));
         }

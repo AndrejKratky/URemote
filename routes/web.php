@@ -29,6 +29,8 @@ Route::get('/register', 'App\Http\Controllers\RegisterController@index')->name('
 Route::post('/register/newUser', 'App\Http\Controllers\RegisterController@register')->name('register');
 
 Route::get('/library', 'App\Http\Controllers\LibraryController@index')->name('library');
+Route::post('/libraryUpdate/{bookId}', 'App\Http\Controllers\LibraryController@updateBook')->name('libraryUpdate')->middleware('admin');
+Route::post('/libraryDelete/{bookId}', 'App\Http\Controllers\LibraryController@deleteBook')->name('libraryDelete')->middleware('admin');
 
 Route::post('/buyBook/{userId}/{bookId}', 'App\Http\Controllers\LibraryController@buyBook')->name('buyBook');
 Route::post('/borrowBook/{userId}/{bookId}', 'App\Http\Controllers\LibraryController@borrowBook')->name('borrowBook');
@@ -41,5 +43,6 @@ Route::post('/profile/deleteUser', 'App\Http\Controllers\ProfileController@delet
 
 Route::get('/addBook', 'App\Http\Controllers\BookController@index')->name('addBook')->middleware('admin');
 Route::post('/addBook', 'App\Http\Controllers\BookController@insert')->name('addBook.insert')->middleware('admin');
+Route::post('/updateBook/{bookId}', 'App\Http\Controllers\BookController@update')->name('addBook.update')->middleware('admin');
 
 Route::get('/myLibrary', 'App\Http\Controllers\MyLibraryController@index')->name('myLibrary');

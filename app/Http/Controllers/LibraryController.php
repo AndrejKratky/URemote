@@ -22,9 +22,9 @@ class LibraryController extends Controller
                 'kniha_id' => $bookId,
                 'status' => 'K'
             ]);
-            return response()->json(['message' => 'Book bought successfully']);
+            return response()->json(['message' => 'Kniha bola úspešne kúpená!']);
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Error buying the book'], 500);
+            return response()->json(['error' => 'Knihu už máte kúpenú!'], 500);
         }
     }
 
@@ -37,9 +37,23 @@ class LibraryController extends Controller
                 'status' => 'P',
                 'pozicane_do' => $returnDate
             ]);
-            return response()->json(['message' => 'Book borrowed successfully']);
+            return response()->json(['message' => 'Kniha bola úspešne požičaná!']);
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Error borrowing the book'], 500);
+            return response()->json(['error' => 'Knihu už máte požičanú!'], 500);
         }
+    }
+
+    public function updateBook($bookId) {
+        $book = Book::find($bookId);
+        return view('addBook', ['book' => $book]);
+    }
+
+    public function deleteBook($bookId) {
+        $book = Book::find($bookId);
+        if ($book) {
+            UserBooks::where('kniha_id', $bookId)->delete();
+            $book->delete();
+        }
+        return redirect()->route('library');
     }
 }

@@ -79,7 +79,17 @@
                                     <div class="card-body">
                                         <h5 class="card-title">{{$book->nazov}}</h5>
                                         <h6>{{ str_replace('_', ' ', $book->autori) }}</h6>
-                                        <a href="podrobnostiKnihy.html" class="text-nowrap">Zobraz podrobnosti</a>
+                                        <a href="" class="text-nowrap">Zobraz podrobnosti</a>
+                                        @if (Auth::check() && Auth::user()->meno == 'admin')
+                                            <form id="updateBookForm{{$book->id}}" action="{{ route('libraryUpdate', ['bookId' => $book->id]) }}" method="POST" style="display: inline;">
+                                                @csrf
+                                                <button class="btn btn-primary ms-1 me-1 ps-2 pe-2 text-center" type="submit">Upraviť</button>
+                                            </form>
+                                            <form id="deleteBookForm{{$book->id}}" action="{{ route('libraryDelete', ['bookId' => $book->id]) }}" method="POST" style="display: inline;">
+                                                @csrf
+                                                <button class="btn btn-danger ms-1 me-1 ps-2 pe-2 text-center" type="submit">Odstrániť</button>
+                                            </form>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-4 col-lg-3 d-flex flex-column justify-content-center">
@@ -99,6 +109,10 @@
     <script>
         const isAuthenticated = {{Auth::check() ? 'true' : 'false'}};
         const userId = {{ Auth::check() ? Auth::user()->id : 'null' }};
+        /*
+        function redirectToUpdate(bookId) {
+            document.getElementById('updateBookForm' + bookId).submit();
+        }*/
     </script>
     <script src="{{asset("js/library.js")}}"></script>
 @endsection

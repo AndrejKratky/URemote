@@ -25,6 +25,27 @@ class BookController extends Controller
         ]);
 
         $book = new Book();
+        return $this->changeBooksData($request, $book);
+    }
+
+    public function update(Request $request, $bookId) {
+        $request->validate([
+            'nazov' => 'required',
+            'autori' => 'required',
+            'cena_kupit' => 'required',
+            'cena_pozicat' => 'required',
+            'rok_vydania' => 'required',
+            'fakulta' => 'required',
+            'pocet_stran' => 'required',
+            'popis_obsahu' => 'required'
+        ]);
+
+        $book = Book::find($bookId);
+        return $this->changeBooksData($request, $book);
+    }
+
+    public function changeBooksData(Request $request, $book): \Illuminate\Http\RedirectResponse
+    {
         $book->nazov = $request->nazov;
         $book->autori = $request->autori;
         $book->cena_kupit = $request->cena_kupit;

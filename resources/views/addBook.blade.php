@@ -12,42 +12,52 @@
 
 @section('content')
     <div class="container mt-4 mb-4">
-        <h2>Pridaj nový titulok</h2>
-        <form id="addBookForm" action="{{route('addBook.insert')}}" method="POST">
+        @if(isset($book))
+            <h2>Uprav existujúci titulok</h2>
+        @else
+            <h2>Pridaj nový titulok</h2>
+        @endif
+        <form id="addBookForm" action="{{ isset($book) ? route('addBook.update', ['bookId' => $book->id]) : route('addBook.insert') }}" method="POST">
             @csrf
             <div class="mb-3">
                 <label for="bookName" class="form-label">Názov titulku</label>
-                <input type="text" class="form-control" id="bookName" name="nazov">
+                <input type="text" class="form-control" id="bookName" name="nazov" value="{{isset($book) ? $book->nazov : ''}}">
             </div>
 
             <div class="mb-3">
                 <label for="bookAuthors" class="form-label">Autor(i) (formát: Meno_Priezvisko,Meno_Priezvisko, ...)</label>
-                <input type="text" class="form-control" id="bookAuthors" name="autori">
+                <input type="text" class="form-control" id="bookAuthors" name="autori" value="{{isset($book) ? $book->autori : ''}}">
             </div>
 
             <div class="mb-3">
                 <label for="bookPrice" class="form-label">Cena kúpy (formát: číslo ALEBO číslo.číslo)</label>
-                <input type="text" class="form-control" id="bookPrice" name="cena_kupit">
+                <input type="text" class="form-control" id="bookPrice" name="cena_kupit" value="{{isset($book) ? $book->cena_kupit : ''}}">
             </div>
 
             <div class="mb-3">
                 <label for="bookPriceBorrow" class="form-label">Cena vypožičania (formát: číslo ALEBO číslo.číslo)</label>
-                <input type="text" class="form-control" id="bookPriceBorrow" name="cena_pozicat">
+                <input type="text" class="form-control" id="bookPriceBorrow" name="cena_pozicat" value="{{isset($book) ? $book->cena_pozicat : ''}}">
             </div>
 
             <div class="mb-3">
                 <label for="bookYear" class="form-label">Rok vydania</label>
-                <select class="form-control" id="bookYear" name="rok_vydania"></select>
+                <select class="form-control" id="bookYear" name="rok_vydania">
+                    @for ($rok = date('Y'); $rok >= 1970; $rok--)
+                        <option value="{{ $rok }}" {{ isset($book) && $book->rok_vydania == $rok ? 'selected' : '' }}>
+                            {{ $rok }}
+                        </option>
+                    @endfor
+                </select>
             </div>
 
             <div class="mb-3">
                 <label for="bookFaculty" class="form-label">Fakulta</label>
-                <input type="text" class="form-control" id="bookFaculty" name="fakulta">
+                <input type="text" class="form-control" id="bookFaculty" name="fakulta" value="{{isset($book) ? $book->fakulta : ''}}">
             </div>
 
             <div class="mb-3">
                 <label for="bookPages" class="form-label">Pocet stran</label>
-                <input type="text" class="form-control" id="bookPages" name="pocet_stran">
+                <input type="text" class="form-control" id="bookPages" name="pocet_stran" value="{{isset($book) ? $book->pocet_stran : ''}}">
             </div>
 
             <div class="mb-2">
@@ -62,10 +72,14 @@
 
             <div class="mb-3">
                 <label for="bookDescription" class="form-label">Popis obsahu titulku</label>
-                <textarea class="form-control" id="bookDescription" name="popis_obsahu"></textarea>
+                <textarea class="form-control" id="bookDescription" name="popis_obsahu">{{isset($book) ? $book->popis_obsahu : ''}}</textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary">Pridaj do databázy</button>
+            @if(isset($book))
+                <button type="submit" class="btn btn-primary">Uprav titulok v databáze</button>
+            @else
+                <button type="submit" class="btn btn-primary">Pridaj titulok do databázy</button>
+            @endif
         </form>
     </div>
 @endsection
