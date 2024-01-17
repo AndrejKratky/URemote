@@ -9,4 +9,8 @@ class UserBooks extends Model
     protected $table = 'user_books';
     public $timestamps = false;
     protected $fillable = ['pouzivatel_id', 'kniha_id', 'status', 'pozicane_do'];
+
+    public function book() {
+        return $this->belongsTo(Book::class, 'kniha_id');
+    }
 }

@@ -17,15 +17,25 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th>Nazov</th>
+                    <th>Názov</th>
                     <th>Autor(i)</th>
-                    <th>Pozicane do</th>
+                    <th>Stav</th>
+                    <th>Požičané do</th>
+                    <th>Aktuálna strana</th>
+                    <th>Čítaj</th>
+                    <th>Stiahni</th>
+                    <th>Obľúbené</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($userBooks as $book)
+                @foreach($userBooks as $userBook)
                     <tr>
-                        <td>{{ $book->id }}</td>
+                        <td>{{ $userBook->nazov }}</td>
+                        <td>{{ $userBook->autori }}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         <td></td>
                         <td></td>
                     </tr>

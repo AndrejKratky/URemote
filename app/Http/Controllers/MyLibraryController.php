@@ -9,7 +9,6 @@ class MyLibraryController extends Controller
 {
     public function index() {
         $user = Auth::user();
-        //$userBooks = UserBooks::where('pouzivatel_id', $user->id)->get();
         $userBooks = $user->userBooks()->with('userBooks')->get();
         return view('mylibrary', ['userBooks' => $userBooks]);
     }
