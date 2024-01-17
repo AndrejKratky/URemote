@@ -30,14 +30,26 @@
                 <tbody>
                 @foreach($userBooks as $userBook)
                     <tr>
-                        <td>{{ $userBook->nazov }}</td>
-                        <td>{{ $userBook->autori }}</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{{ $userBook->book->nazov }}</td>
+                        <td>{{ $userBook->book->autori }}</td>
+                        <td>{{ $userBook->status }}</td>
+                        <td>{{ $userBook->pozicane_do }}</td>
+                        <td>{{ $userBook->aktualna_strana }} z {{ $userBook->book->pocet_stran }}</td>
+                        <td>
+                            <a class="d-flex justify-content-center" href="#">
+                                <i class="bi bi-book"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a class="d-flex justify-content-center" href="#">
+                                <i class="bi bi-download"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a class="d-flex justify-content-center" href="#">
+                                <i class="bi bi-heart"></i>
+                            </a>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>

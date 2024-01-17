@@ -10,7 +10,13 @@ class UserBooks extends Model
     public $timestamps = false;
     protected $fillable = ['pouzivatel_id', 'kniha_id', 'status', 'pozicane_do'];
 
-    public function book() {
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'pouzivatel_id');
+    }
+
+    public function book()
+    {
         return $this->belongsTo(Book::class, 'kniha_id');
     }
 }

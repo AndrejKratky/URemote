@@ -32,8 +32,8 @@ class User extends Authenticate
         return $this->heslo;
     }
 
-    public function userBooks()
+    public function books()
     {
-        return $this->belongsToMany(Book::class, 'user_books', 'pouzivatel_id', 'kniha_id');
+        return $this->hasMany(UserBooks::class, 'pouzivatel_id');
     }
 }
