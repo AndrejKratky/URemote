@@ -1,0 +1,112 @@
+body {
+    background: #E5EBFF;
+}
+
+.logoWebu {
+    width: 20%;
+    height: auto;
+}
+
+#navbarSupportedContent {
+    background-color: #687598;
+    padding: 10px;
+}
+
+.hladajTitulokLabel {
+    width: 250px;
+}
+
+.navbar {
+    background: #687598;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: 60px;
+}
+
+.hlavnaNavigacia {
+    position: sticky;
+    top: 65px;
+    border: 1px solid black;
+}
+
+.hlavnaNavigaciaItem {
+    border: 1px solid black;
+}
+
+.nav-item:hover {
+    box-shadow: 0 2px 0 white;
+    cursor: pointer;
+}
+
+.footer .col:hover {
+    box-shadow: 0 2px 0 white;
+    cursor: pointer;
+}
+
+.footer {
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    background: #687598;
+    position: fixed;
+    bottom: 0;
+}
+
+:root {
+    --bs-emphasis-color-rgb: 255,255,255;
+    --bs-body-font-family: "Calibri", "Arial", sans-serif;
+}
+
+.hlavnaNavigacia .nav-link {
+    color: #0d3dbd;
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.table {
+    table-layout: auto;
+}
+
+.table th {
+    background-color: #ffe8cb;
+}
+
+.table td {
+    background-color: #ffe8cb;
+}
+
+.bookThumbnail {
+    width: 75%;
+    height: auto;
+}
+
+.bookInfoContainer {
+    background-color: #fff9f1;
+}
+
+#backToTopBtn {
+    display: none;
+    position: fixed;
+    bottom: 80px;
+    right: 10px;
+    z-index: 999;
+    border: none;
+    outline: none;
+    background-color: rgba(0,0,0,0.2);
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 20px;
+    font-size: 2rem;
+}
+
+#backToTopBtn:hover {
+    background-color: #333;
+}
+
+@media (max-width: 576px) {
+    .table td {
+        white-space: normal !important;
+    }
+}

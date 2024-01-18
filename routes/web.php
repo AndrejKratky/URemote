@@ -47,3 +47,5 @@ Route::post('/updateBook/{bookId}', 'App\Http\Controllers\BookController@update'
 
 Route::get('/myLibrary', 'App\Http\Controllers\MyLibraryController@index')->name('myLibrary');
 Route::post('/updateBookFavourite/{bookId}', 'App\Http\Controllers\MyLibraryController@updateBookFavourite')->name('myLibrary.updateBookFavourite');
+
+Route::get('/bookInfo/{bookId}', 'App\Http\Controllers\BookInfoController@index')->name('bookInfo');
