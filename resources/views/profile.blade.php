@@ -37,7 +37,7 @@
                         <span class="badge text-bg-info">URemote Lecturer</span>
                     @endif
                 </h4>
-                <p><strong>Email:</strong> email</p>
+                <p><strong>Email:</strong> {{$user->email}}</p>
                 <form action="{{route('profile.update.picture')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">

@@ -8,7 +8,7 @@ class UserBooks extends Model
 {
     protected $table = 'user_books';
     public $timestamps = false;
-    protected $fillable = ['pouzivatel_id', 'kniha_id', 'status', 'pozicane_do'];
+    protected $fillable = ['pouzivatel_id', 'kniha_id', 'stav', 'pozicane_do'];
 
     public function user()
     {

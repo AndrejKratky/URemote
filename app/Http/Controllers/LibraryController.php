@@ -20,7 +20,7 @@ class LibraryController extends Controller
             UserBooks::create([
                 'pouzivatel_id' => $userId,
                 'kniha_id' => $bookId,
-                'status' => 'K'
+                'stav' => 'K'
             ]);
             return response()->json(['message' => 'Kniha bola úspešne kúpená!']);
         } catch (\Exception $e) {
@@ -34,7 +34,7 @@ class LibraryController extends Controller
             UserBooks::create([
                 'pouzivatel_id' => $userId,
                 'kniha_id' => $bookId,
-                'status' => 'P',
+                'stav' => 'P',
                 'pozicane_do' => $returnDate
             ]);
             return response()->json(['message' => 'Kniha bola úspešne požičaná!']);

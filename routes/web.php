@@ -46,3 +46,4 @@ Route::post('/addBook', 'App\Http\Controllers\BookController@insert')->name('add
 Route::post('/updateBook/{bookId}', 'App\Http\Controllers\BookController@update')->name('addBook.update')->middleware('admin');
 
 Route::get('/myLibrary', 'App\Http\Controllers\MyLibraryController@index')->name('myLibrary');
+Route::post('/updateBookFavourite/{bookId}', 'App\Http\Controllers\MyLibraryController@updateBookFavourite')->name('myLibrary.updateBookFavourite');
