@@ -12,7 +12,11 @@
         @if(isset($book))
             <div class="row pt-3">
                 <div class="col-md-4 text-center mb-5">
-                    <img src="{{asset($book->obal_knihy)}}" alt="Book Cover" class="bookThumbnail">
+                    @if ($book->obal_knihy != 'images/defaultBookThumbnail.jpg')
+                        <img src="{{ Storage::disk('public')->url($book->obal_knihy) }}" alt="Book Cover" class="bookThumbnail">
+                    @else
+                        <img src="{{ asset('images/defaultBookThumbnail.jpg') }}" alt="Book Cover" class="bookThumbnail"s>
+                    @endif
                 </div>
 
                 <div class="col-md-8">

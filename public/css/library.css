@@ -71,3 +71,38 @@ body {
 .btn:hover {
     background-color: #cdd6ff;
 }
+
+.scrollable {
+    max-height: calc(100vh - 325px);
+    overflow-y: auto;
+}
+
+.card {
+    height: auto;
+}
+
+.card .img-fluid {
+    width: auto;
+    height: inherit;
+}
+
+.form-label {
+    font-size: 1.3rem;
+}
+
+@media (max-width: 576px) {
+    .card .btn .bi {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .scrollable {
+        height: 70vh;
+        margin-bottom: 100px;
+    }
+
+    #prehladajKniznicuLabel {
+        margin-top: 50px;
+    }
+}

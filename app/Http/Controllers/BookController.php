@@ -62,7 +62,6 @@ class BookController extends Controller
             $book->obal_knihy = $path;
         }
         $book->popis_obsahu = $request->popis_obsahu;
-
         $book->save();
         return redirect()->route('addBook');
     }

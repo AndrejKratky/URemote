@@ -53,7 +53,7 @@
                 <form id="searchForm" class="mb-4">
                     <div>
                         <label>
-                            <input type="text" class="form-control" placeholder="Zadaj kľúčové slová...">
+                            <input type="text" class="form-control" placeholder="Zadaj kľúčové slová..." value="{{request()->query('search')}}">
                         </label>
                         <button class="btn btn-light" type="submit">Hľadaj</button>
                     </div>
@@ -64,7 +64,11 @@
                         <div class="card mb-1">
                             <div class="row g-0">
                                 <div class="col-lg-1 d-none d-lg-flex align-items-center justify-content-center">
-                                    <img src="{{$book->obal_knihy}}" alt="Book Cover" class="img-fluid" data-bs-toggle="modal" data-bs-target="#kniha{{ $book->id }}">
+                                    @if ($book->obal_knihy != 'images/defaultBookThumbnail.jpg')
+                                        <img src="{{ Storage::disk('public')->url($book->obal_knihy) }}" alt="Book Cover" class="img-fluid" data-bs-toggle="modal" data-bs-target="#kniha{{ $book->id }}">
+                                    @else
+                                        <img src="{{ asset('images/defaultBookThumbnail.jpg') }}" alt="Book Cover" class="img-fluid" data-bs-toggle="modal" data-bs-target="#kniha{{ $book->id }}">
+                                    @endif
                                 </div>
                                 <div class="modal fade" id="kniha{{ $book->id }}" tabindex="-1" role="dialog" aria-labelledby="kniha{{ $book->id }}" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -79,7 +83,7 @@
                                     <div class="card-body">
                                         <h5 class="card-title">{{$book->nazov}}</h5>
                                         <h6>{{ str_replace('_', ' ', $book->autori) }}</h6>
-                                        <a href="" class="text-nowrap">Zobraz podrobnosti</a>
+                                        <a href="{{ route('bookInfo', ['bookId' => $book->id]) }}" class="text-nowrap">Zobraz podrobnosti</a>
                                         @if (Auth::check() && Auth::user()->meno == 'admin')
                                             <form id="updateBookForm{{$book->id}}" action="{{ route('libraryUpdate', ['bookId' => $book->id]) }}" method="POST" style="display: inline;">
                                                 @csrf

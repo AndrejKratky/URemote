@@ -17,7 +17,7 @@
         @else
             <h2>Pridaj nový titulok</h2>
         @endif
-        <form id="addBookForm" action="{{ isset($book) ? route('addBook.update', ['bookId' => $book->id]) : route('addBook.insert') }}" method="POST">
+        <form id="addBookForm" action="{{ isset($book) ? route('addBook.update', ['bookId' => $book->id]) : route('addBook.insert') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="bookName" class="form-label">Názov titulku</label>
@@ -30,12 +30,12 @@
             </div>
 
             <div class="mb-3">
-                <label for="bookPrice" class="form-label">Cena kúpy (formát: číslo ALEBO číslo.číslo)</label>
+                <label for="bookPrice" class="form-label">Cena kúpy</label>
                 <input type="text" class="form-control" id="bookPrice" name="cena_kupit" value="{{isset($book) ? $book->cena_kupit : ''}}">
             </div>
 
             <div class="mb-3">
-                <label for="bookPriceBorrow" class="form-label">Cena vypožičania (formát: číslo ALEBO číslo.číslo)</label>
+                <label for="bookPriceBorrow" class="form-label">Cena vypožičania</label>
                 <input type="text" class="form-control" id="bookPriceBorrow" name="cena_pozicat" value="{{isset($book) ? $book->cena_pozicat : ''}}">
             </div>
 
@@ -51,7 +51,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="bookFaculty" class="form-label">Fakulta</label>
+                <label for="bookFaculty" class="form-label">Fakulta / Útvar</label>
                 <input type="text" class="form-control" id="bookFaculty" name="fakulta" value="{{isset($book) ? $book->fakulta : ''}}">
             </div>
 

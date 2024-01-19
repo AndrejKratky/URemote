@@ -15,9 +15,9 @@
 
             <ul class="navbar-nav me-0 mb-2 mb-lg-0">
                 <li>
-                    <form class="d-flex" role="search">
+                    <form class="d-flex" role="search" id="searchForm">
                         <input class="form-control me-2 hladajTitulokLabel" type="search" placeholder="Zadaj názov hľadaného titulku..." aria-label="Search">
-                        <button type="button" class="btn btn-outline-light" style="margin-right: 12px">Hľadaj</button>
+                        <a class="btn btn-outline-light" style="margin-right: 12px" onclick="searchLibrary()">Hľadaj</a>
                     </form>
                 </li>
 

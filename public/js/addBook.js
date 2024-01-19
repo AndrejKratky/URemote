@@ -20,7 +20,7 @@ document.getElementById('addBookForm').addEventListener('submit', function(event
         fields.push('bookCover');
     }
 
-    <!-- Prazdne hodnoty -->
+    // Prazdne hodnoty
     for (let i = 0; i < fields.length; i++) {
         let field = document.getElementById(fields[i]);
         if (!field.value) {
@@ -31,7 +31,7 @@ document.getElementById('addBookForm').addEventListener('submit', function(event
         }
     }
 
-    <!-- regex autor -->
+    // regex autor
     let authorPattern = /^([A-Za-z_áéíóúčšžÁÉÍÓÚČŠŽ]+_[A-Za-z_áéíóúčšžÁÉÍÓÚČŠŽ]+)(,[A-Za-z_áéíóúčšžÁÉÍÓÚČŠŽ]+_[A-Za-z_áéíóúčšžÁÉÍÓÚČŠŽ]+)*$/
     let bookAuthors = document.getElementById('bookAuthors');
     if (!authorPattern.test(bookAuthors.value)) {
@@ -40,7 +40,7 @@ document.getElementById('addBookForm').addEventListener('submit', function(event
         bookAuthors.focus();
     }
 
-    <!-- regex price & borrow -->
+    // regex price & borrow
     let decimalPattern = /^\d+(\.\d+)?$/;
     let bookPrice = document.getElementById('bookPrice');
     let bookPriceBorrow = document.getElementById('bookPriceBorrow');
@@ -59,7 +59,7 @@ document.getElementById('addBookForm').addEventListener('submit', function(event
         bookPrice.focus();
     }
 
-    <!-- book pages range -->
+    // book pages range
     let bookPages = document.getElementById('bookPages');
     if (bookPages.value < 1 || bookPages.value > 9999) {
         event.preventDefault();
