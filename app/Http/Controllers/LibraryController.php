@@ -3,16 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
-use App\Models\User;
 use App\Models\UserBooks;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class LibraryController extends Controller
 {
     public function index () {
         $books = Book::all();
         return view('library', compact('books'));
+    }
+
+    public function searchBooks(Request $request) {
+        $search = $request->input('search');
+        $books = DB::table('books')
+            ->where('nazov', 'like','%'.$search.'%')
+            ->orWhere('autori', 'like', '%'.$search.'%')
+            ->get();
+        return view('library', ['books' => $books]);
     }
 
     public function buyBook($userId, $bookId) {

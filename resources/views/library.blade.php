@@ -50,10 +50,11 @@
 
             <div class="col-md-9">
                 <h5 id="prehladajKniznicuLabel">Prehľadaj knižnicu</h5>
-                <form id="searchForm" class="mb-4">
+                <form id="searchForm" class="mb-4" action="{{route('librarySearch')}}" method="POST">
+                    @csrf
                     <div>
                         <label>
-                            <input type="text" class="form-control" placeholder="Zadaj kľúčové slová..." value="{{request()->query('search')}}">
+                            <input type="text" name="search" class="form-control" placeholder="Zadaj kľúčové slová..." value="{{request()->query('search')}}">
                         </label>
                         <button class="btn btn-light" type="submit">Hľadaj</button>
                     </div>

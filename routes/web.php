@@ -31,6 +31,7 @@ Route::post('/register/newUser', 'App\Http\Controllers\RegisterController@regist
 Route::get('/library', 'App\Http\Controllers\LibraryController@index')->name('library');
 Route::post('/libraryUpdate/{bookId}', 'App\Http\Controllers\LibraryController@updateBook')->name('libraryUpdate')->middleware('admin');
 Route::post('/libraryDelete/{bookId}', 'App\Http\Controllers\LibraryController@deleteBook')->name('libraryDelete')->middleware('admin');
+Route::post('/library/search', 'App\Http\Controllers\LibraryController@searchBooks')->name('librarySearch');
 
 Route::post('/buyBook/{userId}/{bookId}', 'App\Http\Controllers\LibraryController@buyBook')->name('buyBook');
 Route::post('/borrowBook/{userId}/{bookId}', 'App\Http\Controllers\LibraryController@borrowBook')->name('borrowBook');
