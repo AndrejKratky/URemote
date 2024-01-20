@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\WebsiteReview;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
     public function index() {
-        return view('home');
+        $reviews = WebsiteReview::with('user')->get();
+        return view('home', compact('reviews'));
     }
 
     public function updatePlan (Request $request, $plan) {

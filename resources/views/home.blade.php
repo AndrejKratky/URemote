@@ -101,39 +101,37 @@
                 <div id="spatnaVazba">
                     <h2>Spätná väzba od používateľov</h2>
                     <div class="container mt-5">
-                        <div class="row mb-4">
-                            <div class="col-lg-2 text-center">
-                                <img src="{{asset("images/reviewsProfilePictures/recenziaObr1.png")}}" alt="User Avatar" class="img-fluid rounded-circle" style="width: 80px; height: 80px;">
-                                <h5 class="mt-2">Janko Hraško</h5>
-                            </div>
-                            <div class="col-lg-10">
-                                <div class="mb-2">
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
+                        @foreach($reviews as $review)
+                            <div class="row mb-4">
+                                <div class="col-lg-2 text-center">
+                                    @if ($review->user->obrazok_profil != 'images/defaultProfilePicture.png')
+                                        <img src="{{ Storage::disk('public')->url($review->user->obrazok_profil) }}" alt="User Avatar" class="img-fluid rounded-circle" style="width: 80px; height: 80px;">
+                                    @else
+                                        <img src="{{ asset('images/defaultProfilePicture.png') }}" alt="User Avatar" class="img-fluid rounded-circle" style="width: 80px; height: 80px;">
+                                    @endif
+                                    <h5 class="mt-2">{{ $review->user->meno }}</h5>
                                 </div>
-                                <p>Ocenil som jednoduchosť a rýchlosť pri výbere a požičaní kníh na tejto stránke. Vďaka mesačnému predplatnému mám prístup k mnohým učebnicám za skvelú cenu. Určite budem odporúčať ostatným študentom!</p>
-                            </div>
-                        </div>
+                                <div class="col-lg-10">
+                                    <div class="mb-2">
+                                        @php
+                                            $filledStars = floor($review->rating);
+                                            $halfStar = $review->rating - $filledStars >= 0.5;
+                                        @endphp
 
-                        <div class="row mb-4">
-                            <div class="col-lg-2 text-center">
-                                <img src="{{asset("images/reviewsProfilePictures/recenziaObr2.png")}}" alt="User Avatar" class="img-fluid rounded-circle" style="width: 80px; height: 80px;">
-                                <h5 class="mt-2">Zuzka Nováková</h5>
-                            </div>
-                            <div class="col-lg-10">
-                                <div class="mb-2">
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star-fill"></i>
-                                    <i class="bi bi-star"></i>
+                                        @for($i = 1; $i <= 5; $i++)
+                                            @if($i <= $filledStars)
+                                                <i class="bi bi-star-fill"></i>
+                                            @elseif($i == $filledStars + 1 && $halfStar)
+                                                <i class="bi bi-star-half"></i>
+                                            @else
+                                                <i class="bi bi-star"></i>
+                                            @endif
+                                        @endfor
+                                    </div>
+                                    <p>{{ $review->review_text }}</p>
                                 </div>
-                                <p>Stránka ponúka skvelý výber akademických kníh a predplatné je cenovo dostupné. Avšak rozhranie by mohlo byť trochu intuitívnejšie, občas som mala problém nájsť, čo som hľadala. Bolo by skvelé, keby ste to v budúcnosti vylepšili.</p>
                             </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
