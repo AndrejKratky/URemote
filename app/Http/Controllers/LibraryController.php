@@ -24,6 +24,27 @@ class LibraryController extends Controller
         return view('library', ['books' => $books]);
     }
 
+    public function searchBooksFilters(Request $reguest) {
+        $authors = $reguest->input('authors');
+        $category = $reguest->input('category');
+        $releaseYear = $reguest->input('releaseYear');
+        $query = Book::query();
+        if (!empty($authors)) {
+            $query->whereIn('autori', $authors);
+        }
+        if (!empty($category)) {
+            $categoryId = DB::table('categories')->where('nazov_kategorie', $category)->value('id');
+            if ($categoryId) {
+                $query->where('kategoria_id', $categoryId);
+            }
+        }
+        if (!empty($releaseYear)) {
+            $query->where('rok_vydania', $releaseYear);
+        }
+        $books = $query->get();
+        return response()->json(['books' => $books]);
+    }
+
     public function buyBook($userId, $bookId) {
         try {
             UserBooks::create([

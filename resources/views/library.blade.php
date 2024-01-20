@@ -14,7 +14,9 @@
     <div class="container-fluid">
         <div class="row m-2">
             <div class="col-md-3">
-                <form id="filterForm">
+                <!--
+                <form id="filterForm" action="{{route('librarySearch.filters')}}">
+                    @csrf
                     <div class="mb-3">
                         <div id="autorContainer">
                             <label for="autor" class="form-label">Autor(i)</label>
@@ -25,15 +27,12 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="ciastkovaKniznica" class="form-label">Čiastková knižnica</label>
-                        <select class="form-control" id="ciastkovaKniznica">
-                            <option>Katedra matematiky</option>
-                            <option>Katedra aplikovanej matematiky</option>
-                            <option>Ústav informačných a komunikačných technológií</option>
-                            <option>Katedra matematických metód</option>
-                            <option>Katedra kvantit. metód a hosp. informatiky</option>
-                            <option>Autorizované a tréningové centrum</option>
-                            <option>Katedra geotechniky</option>
+                        <label for="kategorie" class="form-label">Kategória</label>
+                        <select class="form-control" id="kategorie">
+                            <option>dejiny</option>
+                            <option>financie</option>
+                            <option>elektronika</option>
+                            <option>doprava</option>
                         </select>
                     </div>
                     <div class="mb-3">
@@ -41,6 +40,36 @@
                         <select class="form-control" id="rokVydania"></select>
                     </div>
                     <button type="submit" class="btn btn-light">Aplikuj filtre</button>
+                </form>
+                -->
+
+                <form id="filterForm" action="{{route('librarySearch.filters')}}" method="POST">
+                    @csrf
+                    <div class="mb-3">
+                        <div id="autorContainer">
+                            <label for="autor" class="form-label">Autor(i)</label>
+                            <input type="text" class="form-control mb-2" id="autor" name="author[]" placeholder="Zadajte meno autora...">
+                        </div>
+                        <button type="button" class="btn btn-light mb-3" onclick="addAuthor()">Pridaj autora</button>
+                        <button type="button" class="btn btn-light mb-3" onclick="removeAuthor()">Odstáň autora</button>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="ciastkovaKniznica" class="form-label">Kategória</label>
+                        <select class="form-control" id="ciastkovaKniznica" name="category">
+                            <option value="dejiny">Dejiny</option>
+                            <option value="financie">Financie</option>
+                            <option value="elektronika">Elektronika</option>
+                            <option value="doprava">Doprava</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="rokVydania" class="form-label">Rok vydania</label>
+                        <select class="form-control" id="rokVydania" name="releaseYear"></select>
+                    </div>
+
+                    <button type="button" class="btn btn-light" onclick="applyFilters()">Aplikuj filtre</button>
                 </form>
 
                 @if (Auth::check() && Auth::user()->meno == 'admin')
@@ -66,7 +95,7 @@
                             <div class="row g-0">
                                 <div class="col-lg-1 d-none d-lg-flex align-items-center justify-content-center">
                                     @if ($book->obal_knihy != 'images/defaultBookThumbnail.jpg')
-                                        <img src="{{ Storage::disk('public')->url($book->obal_knihy) }}" alt="Book Cover" class="img-fluid" data-bs-toggle="modal" data-bs-target="#kniha{{ $book->id }}">
+                               <img src="{{ Storage::disk('public')->url($book->obal_knihy) }}" alt="Book Cover" class="img-fluid" data-bs-toggle="modal" data-bs-target="#kniha{{ $book->id }}">
                                     @else
                                         <img src="{{ asset('images/defaultBookThumbnail.jpg') }}" alt="Book Cover" class="img-fluid" data-bs-toggle="modal" data-bs-target="#kniha{{ $book->id }}">
                                     @endif
@@ -75,7 +104,11 @@
                                     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                         <div class="modal-content">
                                             <div class="modal-body">
-                                                <img src="{{$book->obal_knihy}}" class="img-fluid d-block mx-auto" alt="Book Cover">
+                                                @if ($book->obal_knihy != 'images/defaultBookThumbnail.jpg')
+                                                    <img src="{{ Storage::disk('public')->url($book->obal_knihy) }}" class="img-fluid d-block mx-auto" alt="Book Cover">
+                                                @else
+                                                    <img src="{{ asset('images/defaultBookThumbnail.jpg') }}" class="img-fluid d-block mx-auto" alt="Book Cover">
+                                                @endif
                                             </div>
                                         </div>
                                     </div>

@@ -91,3 +91,31 @@ if (vyberRok) {
         vyberRok.appendChild(volbaRoku);
     }
 }
+
+function applyFilters() {
+    let authorValues = document.getElementsByName("author[]");
+    let categoryValue = document.getElementById("ciastkovaKniznica").value;
+    let releaseYearValue = document.getElementById("rokVydania").value;
+
+    let formData = {
+        authors: Array.from(authorValues).map(author => author.value),
+        category: categoryValue,
+        releaseYear: releaseYearValue
+    };
+
+    fetch('/library/search/filters', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: JSON.stringify(formData)
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
