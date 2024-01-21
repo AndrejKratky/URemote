@@ -15,7 +15,7 @@
                     @if ($book->obal_knihy != 'images/defaultBookThumbnail.jpg')
                         <img src="{{ Storage::disk('public')->url($book->obal_knihy) }}" alt="Book Cover" class="bookThumbnail">
                     @else
-                        <img src="{{ asset('images/defaultBookThumbnail.jpg') }}" alt="Book Cover" class="bookThumbnail"s>
+                        <img src="{{ asset('images/defaultBookThumbnail.jpg') }}" alt="Book Cover" class="bookThumbnail">
                     @endif
                 </div>
 
