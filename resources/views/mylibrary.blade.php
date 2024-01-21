@@ -34,7 +34,11 @@
                 <tbody>
                 @foreach($userBooks as $userBook)
                     <tr>
-                        <td>{{ $userBook->book->nazov }}</td>
+                        <td>
+                            <a href="/bookInfo/{{ $userBook->book->id }}">
+                                {{ $userBook->book->nazov }}
+                            </a>
+                        </td>
                         <td>{{ $userBook->book->autori }}</td>
                         <td>{{ $userBook->stav }}</td>
                         <td>{{ $userBook->pozicane_do }}</td>
@@ -69,5 +73,6 @@
 @endsection
 
 @section('scripts')
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="{{asset("js/myLibrary.js")}}"></script>
 @endsection

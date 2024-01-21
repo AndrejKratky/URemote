@@ -15,7 +15,11 @@ class MyLibraryController extends Controller
     }
 
     public function updateBookFavourite(Request $request, $bookId) {
-        $userBook = UserBooks::find($bookId);
+        $user = Auth::user();
+        $userBook = UserBooks::where([
+            'kniha_id' => $bookId,
+            'pouzivatel_id' => $user->id,
+        ])->first();
         if ($userBook) {
             $userBook->oblubena = !$userBook->oblubena;
             $userBook->save();

@@ -63,7 +63,9 @@ class LibraryController extends Controller
             UserBooks::create([
                 'pouzivatel_id' => $userId,
                 'kniha_id' => $bookId,
-                'stav' => 'K'
+                'stav' => 'K',
+                'oblubena' => 0,
+                'aktualna_strana' => 0
             ]);
             return response()->json(['message' => 'Kniha bola úspešne kúpená!']);
         } catch (\Exception $e) {

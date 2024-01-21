@@ -33,53 +33,25 @@
             <div class="col-lg-9">
                 <div id="novinky">
                     <h2>Novinky</h2>
-                    <div class="row mb-2">
-                        <div class="col-lg-3 d-flex justify-content-center">
-                            <img src="{{asset("images/bookThumbnails/kniha1.jpg")}}" alt="Civilná ochrana a riešenie krízových javov">
-                        </div>
-                        <div class="col-lg-9">
-                            <h4>Civilná ochrana a riešenie krízových javov</h4>
-                            <h5>Jozef Kubás, Mária Polorecká, Patrik Mitrenga</h5>
-                            <p class="popisTituluNovinky">
-                                Problematika civilnej ochrany a krízových javov je veľmi aktuálna, avšak venuje sa jej málo knižných publikácií a je pomerne málo propagovaná medzi širokou verejnosťou. Aj to bol dôvod vzniku vysokoškolskej učebnice, ktorá zjednocuje a prehľadne prezentuje civilnú ochranu v kontexte krízového manažmentu, ako aj samotné postupy na riešenie krízových javov. V učebnici sú logicky a metodicky usporiadané informácie o civilnej ochrane, krízovom manažmente a integrovanom záchrannom systéme v prostredí Slovenskej republiky. Následne približuje problematiku environmentálnych a prírodných krízových javov a poskytuje základné informácie o možnostiach ich riešenia. Približuje tiež špecifikácie vzniknutých situácií a očakávané zvláštnosti, ktoré sa môžu vyskytnúť pri riešení udalosti.
-                            </p>
-                            <a href="#" class="btn btn-primary">Kúpiť</a>
-                            <a href="#" class="btn btn-primary">Vypožičať</a>
-                            <a href="#" class="btn btn-primary">Čítať</a>
-                        </div>
-                    </div>
+                    @foreach($books as $book)
+                        <div class="row mb-2">
+                            <div class="col-lg-3 d-flex justify-content-center">
 
-                    <div class="row mb-2">
-                        <div class="col-lg-3 d-flex justify-content-center">
-                            <img src="{{asset("images/bookThumbnails/kniha2.jpg")}}" alt="Civilná ochrana a riešenie krízových javov">
+                                @if ($book->obal_knihy != 'images/defaultBookThumbnail.jpg')
+                                    <img src="{{ Storage::disk('public')->url($book->obal_knihy) }}" alt="{{ $book->nazov }}">
+                                @else
+                                    <img src="{{ asset('images/defaultBookThumbnail.jpg') }}" alt="{{ $book->nazov }}">
+                                @endif
+                            </div>
+                            <div class="col-lg-9">
+                                <h4><a href="/bookInfo/{{ $book->id }}">{{ $book->nazov }}</a></h4>
+                                <h5>{{ str_replace('_', ' ', $book->autori) }}</h5>
+                                <p class="popisTituluNovinky">
+                                    {{ $book->popis_obsahu }}
+                                </p>
+                            </div>
                         </div>
-                        <div class="col-lg-9">
-                            <h4>Micro:bit krok za krokem: praktický úvod do programování a elektroniky</h4>
-                            <h5>Martin Malý</h5>
-                            <p class="popisTituluNovinky">
-                                Kniha „Micro:bit krok za krokom“ je určená ako pre úplných začiatočníkov, ktorí sa ešte len s Micro:bitom a programovaním zoznamujú, tak aj pre pokročilejších užívateľov, ktorí už majú skúsenosti s elektronikou a programovaním. Súčasťou knihy sú aj príklady, námety na pokusy a hry, alebo aj stručné „ťaháky“ a metodické listy, takže kniha nájde využitie nielen doma, ale aj pri výučbe v školách. V knihe sú popísané aj najpoužívanejšie kity a rozširujúce moduly, ktoré sú v Českej republike dostupné. Autor pre začiatočnícky výklad využíva prevažne programovanie pomocou začiatočníckeho blokového editora MakeCode. Kniha ale obsahuje aj referenčnú príručku pre programovanie v JavaScripte či Pythone a venuje sa aj pokročilejším témam, ako je interný front správ v operačnom systéme Micro:bitu alebo tvorba vlastných rozšírení (teda knižníc). Kniha tak predstavuje prvý slovenský ucelený materiál o výukovej platforme Micro:bit, vhodný ako pre začiatočníkov, tak pre pokročilých.
-                            </p>
-                            <a href="#" class="btn btn-primary">Kúpiť</a>
-                            <a href="#" class="btn btn-primary">Vypožičať</a>
-                            <a href="#" class="btn btn-primary">Čítať</a>
-                        </div>
-                    </div>
-
-                    <div class="row mb-2">
-                        <div class="col-lg-3 d-flex justify-content-center">
-                            <img src="{{asset("images/bookThumbnails/kniha3.jpg")}}" alt="Civilná ochrana a riešenie krízových javov">
-                        </div>
-                        <div class="col-lg-9">
-                            <h4>Klimatická krize a zelená dohoda</h4>
-                            <h5>Noam Chomsky, Robert Pollin, C. J. Polychroniou</h5>
-                            <p class="popisTituluNovinky">
-                                Noam Chomsky, filozof, lingvista, spoločenský kritik a aktivista, a Robert Pollin v tejto knihe mapujú katastrofické dôsledky nekontrolovanej zmeny klímy a predstavujú plán zmeny. Ľudstvo musí prestať spaľovať fosílne palivá a urobiť tak spôsobom, ktorý zlepší životnú úroveň obyvateľov. To je cieľom zelenej dohody a, ako autori objasňujú, je to úplne uskutočniteľné. Chomsky s Pollinom argumentujú proti obavám, ktoré vyplývajú z prechodu na zelenú ekonomiku, a vysvetľujú, ako tieto falošné obavy podporujú popieranie klímy. Táto kniha ukazuje, ako možno politicky aj ekonomicky prekonať klimatickú krízu.
-                            </p>
-                            <a href="#" class="btn btn-primary">Kúpiť</a>
-                            <a href="#" class="btn btn-primary">Vypožičať</a>
-                            <a href="#" class="btn btn-primary">Čítať</a>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
 
                 <div id="oNas">
@@ -115,14 +87,10 @@
                                     <div class="mb-2">
                                         @php
                                             $filledStars = floor($review->rating);
-                                            $halfStar = $review->rating - $filledStars >= 0.5;
                                         @endphp
-
                                         @for($i = 1; $i <= 5; $i++)
                                             @if($i <= $filledStars)
                                                 <i class="bi bi-star-fill"></i>
-                                            @elseif($i == $filledStars + 1 && $halfStar)
-                                                <i class="bi bi-star-half"></i>
                                             @else
                                                 <i class="bi bi-star"></i>
                                             @endif
@@ -132,6 +100,13 @@
                                 </div>
                             </div>
                         @endforeach
+                            @auth
+                            <div class="row mt-4">
+                                <div class="col-lg-12">
+                                    <a href="{{ route('write', ['what' => 'website']) }}" class="btn btn-primary">Napísať recenziu</a>
+                                </div>
+                            </div>
+                            @endauth
                     </div>
                 </div>
             </div>

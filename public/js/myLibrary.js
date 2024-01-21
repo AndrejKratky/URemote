@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
             let xhr = new XMLHttpRequest();
             xhr.open('POST', '/updateBookFavourite/' + userBookId, true);
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.setRequestHeader('X-CSRF-TOKEN', '{{ csrf_token() }}');
+            xhr.setRequestHeader('X-CSRF-TOKEN', $('meta[name="csrf-token"]').attr('content'));
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4) {
                     if (xhr.status === 200) {
