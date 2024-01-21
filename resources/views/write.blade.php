@@ -13,26 +13,26 @@
 @section('content')
     <div class="container mt-5 content">
         <h3>Napíšte svoju recenziu</h3>
-        <div class="form-group">
-            <div class="star-container" data-rating="0">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-            <div id="warningContainer"></div>
-            <label for="reviewText"></label>
-            <textarea class="form-control" id="reviewText" rows="5"></textarea>
-            @if ($what === 'website')
-                <form method="POST" action="{{ route('write.website') }}" class="mt-3">
-                    @csrf
-                    <button type="submit" class="btn btn-primary btnSend">Odoslať recenziu</button>
-                </form>
-            @else
-                <a href="{{ route('write.book', ['what' => $what]) }}" class="btn btn-primary mt-3 btnSend">Odoslať recenziu</a>
-            @endif
-        </div>
+        @if ($what === 'website')
+            <form method="POST" action="{{ route('write.website') }}" class="mt-3">
+                @csrf
+                <div class="form-group">
+                    <div class="star-container" data-rating="0">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div id="warningContainer"></div>
+                    <label for="reviewText"></label>
+                    <textarea class="form-control" id="reviewText" rows="5"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btnSend">Odoslať recenziu</button>
+            </form>
+        @else
+            <a href="{{ route('write.book', ['what' => $what]) }}" class="btn btn-primary mt-3 btnSend">Odoslať recenziu</a>
+        @endif
     </div>
 @endsection
 

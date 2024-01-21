@@ -36,6 +36,7 @@ $(document).ready(function() {
             $.ajax({
                 type: "POST",
                 url: $(this).attr("action"),
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 data: {
                     rating: rating,
                     reviewText: reviewText

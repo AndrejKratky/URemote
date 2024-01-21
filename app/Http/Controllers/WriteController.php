@@ -14,7 +14,6 @@ class WriteController extends Controller
     }
 
     public function writeWebsiteReview(Request $request) {
-        dd('here');
         $request->validate([
             'rating' => 'required|integer|min:1|max:5',
             'reviewText' => 'required|string'
