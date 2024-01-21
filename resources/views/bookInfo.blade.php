@@ -25,6 +25,10 @@
                         <table class="table border border-light">
                             <tbody>
                             <tr>
+                                <th scope="row" class="text-nowrap">Kategória</th>
+                                <td class="text-nowrap">{{DB::table('categories')->where('id', $book->kategoria_id)->value('nazov_kategorie')}}</td>
+                            </tr>
+                            <tr>
                                 <th scope="row" class="text-nowrap">Autor(i)</th>
                                 <td class="text-nowrap">{{$book->autori}}</td>
                             </tr>

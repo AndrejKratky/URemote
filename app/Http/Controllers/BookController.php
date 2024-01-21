@@ -21,9 +21,9 @@ class BookController extends Controller
             'rok_vydania' => 'required',
             'fakulta' => 'required',
             'pocet_stran' => 'required',
-            'popis_obsahu' => 'required'
+            'popis_obsahu' => 'required',
+            'kategoria_id' => 'required'
         ]);
-
         $book = new Book();
         return $this->changeBooksData($request, $book);
     }
@@ -37,9 +37,9 @@ class BookController extends Controller
             'rok_vydania' => 'required',
             'fakulta' => 'required',
             'pocet_stran' => 'required',
-            'popis_obsahu' => 'required'
+            'popis_obsahu' => 'required',
+            'kategoria_id' => 'required'
         ]);
-
         $book = Book::find($bookId);
         return $this->changeBooksData($request, $book);
     }
@@ -62,6 +62,7 @@ class BookController extends Controller
             $book->obal_knihy = $path;
         }
         $book->popis_obsahu = $request->popis_obsahu;
+        $book->kategoria_id = $request->kategoria_id;
         $book->save();
         return redirect()->route('addBook');
     }

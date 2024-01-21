@@ -26,8 +26,8 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="ciastkovaKniznica" class="form-label">Kategória</label>
-                        <select class="form-control" id="ciastkovaKniznica" name="category">
+                        <label for="kategoria" class="form-label">Kategória</label>
+                        <select class="form-control" id="kategoria" name="category">
                             <option value="empty">---</option>
                             <option value="dejiny">Dejiny</option>
                             <option value="financie">Financie</option>
@@ -41,7 +41,7 @@
                         <select class="form-control" id="rokVydania" name="releaseYear"></select>
                     </div>
 
-                    <button type="button" class="btn btn-light" onclick="applyFilters()">Aplikuj filtre</button>
+                    <button type="button" class="btn btn-light" onclick="applyFilters()">Filtrovať</button>
                 </form>
 
                 @if (Auth::check() && Auth::user()->meno == 'admin')

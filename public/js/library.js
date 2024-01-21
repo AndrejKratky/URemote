@@ -98,7 +98,7 @@ if (vyberRok) {
 
 function applyFilters() {
     let authorValues = document.getElementsByName("author[]");
-    let categoryValue = document.getElementById("ciastkovaKniznica").value;
+    let categoryValue = document.getElementById("kategoria").value;
     let releaseYearValue = document.getElementById("rokVydania").value;
 
     if (authorValues[0].value.trim() === "" && categoryValue === "empty" && releaseYearValue === "empty") {

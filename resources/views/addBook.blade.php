@@ -30,6 +30,16 @@
             </div>
 
             <div class="mb-3">
+                <label for="bookCategory" class="form-label">Kategória</label>
+                <select class="form-control" id="bookCategory" name="kategoria_id">
+                    <option value="1">Dejiny</option>
+                    <option value="2">Financie</option>
+                    <option value="3">Elektronika</option>
+                    <option value="4">Doprava</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
                 <label for="bookPrice" class="form-label">Cena kúpy</label>
                 <input type="text" class="form-control" id="bookPrice" name="cena_kupit" value="{{isset($book) ? $book->cena_kupit : ''}}">
             </div>
