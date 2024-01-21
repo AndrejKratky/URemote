@@ -52,3 +52,7 @@ Route::get('/myLibrary', 'App\Http\Controllers\MyLibraryController@index')->name
 Route::post('/updateBookFavourite/{bookId}', 'App\Http\Controllers\MyLibraryController@updateBookFavourite')->name('myLibrary.updateBookFavourite');
 
 Route::get('/bookInfo/{bookId}', 'App\Http\Controllers\BookInfoController@index')->name('bookInfo');
+
+Route::get('/write/review/{what}', 'App\Http\Controllers\WriteController@index')->name('write');
+Route::post('/write/website', 'App\Http\Controllers\WriteController@writeWebsiteReview')->name('write.website');
+Route::post('/write/book/{bookId}', 'App\Http\Controllers\WriteController@writeBookReview')->name('write.book');
