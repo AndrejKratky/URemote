@@ -14,35 +14,6 @@
     <div class="container-fluid">
         <div class="row m-2">
             <div class="col-md-3">
-                <!--
-                <form id="filterForm" action="{{route('librarySearch.filters')}}">
-                    @csrf
-                    <div class="mb-3">
-                        <div id="autorContainer">
-                            <label for="autor" class="form-label">Autor(i)</label>
-                            <input type="text" class="form-control mb-2" id="autor" name="author[]" placeholder="Zadajte meno autora...">
-                        </div>
-                        <button type="button" class="btn btn-light mb-3" onclick="addAuthor()">Pridaj autora</button>
-                        <button type="button" class="btn btn-light mb-3" onclick="removeAuthor()">Odstáň autora</button>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="kategorie" class="form-label">Kategória</label>
-                        <select class="form-control" id="kategorie">
-                            <option>dejiny</option>
-                            <option>financie</option>
-                            <option>elektronika</option>
-                            <option>doprava</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="rokVydania" class="form-label">Rok vydania</label>
-                        <select class="form-control" id="rokVydania"></select>
-                    </div>
-                    <button type="submit" class="btn btn-light">Aplikuj filtre</button>
-                </form>
-                -->
-
                 <form id="filterForm" action="{{route('librarySearch.filters')}}" method="POST">
                     @csrf
                     <div class="mb-3">
@@ -57,6 +28,7 @@
                     <div class="mb-3">
                         <label for="ciastkovaKniznica" class="form-label">Kategória</label>
                         <select class="form-control" id="ciastkovaKniznica" name="category">
+                            <option value="empty">---</option>
                             <option value="dejiny">Dejiny</option>
                             <option value="financie">Financie</option>
                             <option value="elektronika">Elektronika</option>
@@ -147,10 +119,6 @@
     <script>
         const isAuthenticated = {{Auth::check() ? 'true' : 'false'}};
         const userId = {{ Auth::check() ? Auth::user()->id : 'null' }};
-        /*
-        function redirectToUpdate(bookId) {
-            document.getElementById('updateBookForm' + bookId).submit();
-        }*/
     </script>
     <script src="{{asset("js/library.js")}}"></script>
 @endsection

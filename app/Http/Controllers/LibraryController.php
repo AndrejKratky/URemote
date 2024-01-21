@@ -15,6 +15,13 @@ class LibraryController extends Controller
         return view('library', compact('books'));
     }
 
+    public function refresh (Request $request) {
+        $bookData = $request->session()->get('filtered_books', []);
+        $bookIds = collect($bookData)->pluck('id')->toArray();
+        $books = Book::whereIn('id', $bookIds)->get();
+        return view('library', compact('books'));
+    }
+
     public function searchBooks(Request $request) {
         $search = $request->input('search');
         $books = DB::table('books')
@@ -24,25 +31,31 @@ class LibraryController extends Controller
         return view('library', ['books' => $books]);
     }
 
-    public function searchBooksFilters(Request $reguest) {
-        $authors = $reguest->input('authors');
-        $category = $reguest->input('category');
-        $releaseYear = $reguest->input('releaseYear');
+    public function searchBooksFilters(Request $request) {
+        $authors = $request->input('authors');
+        $category = $request->input('category');
+        $releaseYear = $request->input('releaseYear');
         $query = Book::query();
-        if (!empty($authors)) {
-            $query->whereIn('autori', $authors);
+        if ($authors[0] !== null) {
+            $query->orWhere(function($query) use ($authors) {
+                foreach ($authors as $author) {
+                    $query->orWhere('autori', 'like', '%' . $author . '%');
+                }
+            });
         }
-        if (!empty($category)) {
+        if ($category !== "empty") {
             $categoryId = DB::table('categories')->where('nazov_kategorie', $category)->value('id');
             if ($categoryId) {
                 $query->where('kategoria_id', $categoryId);
             }
         }
-        if (!empty($releaseYear)) {
+        if ($releaseYear !== "empty") {
             $query->where('rok_vydania', $releaseYear);
         }
         $books = $query->get();
-        return response()->json(['books' => $books]);
+        $request->session()->put('filtered_books', $books->toArray());
+        $redirectUrl = route('library.refresh');
+        return response()->json(['redirect' => $redirectUrl]);
     }
 
     public function buyBook($userId, $bookId) {

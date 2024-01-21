@@ -84,6 +84,10 @@ function removeAuthor() {
 const vyberRok = document.getElementById('rokVydania');
 if (vyberRok) {
     let aktualnyRok = new Date().getFullYear();
+    const defaultOption = document.createElement('option');
+    defaultOption.value = 'empty';
+    defaultOption.textContent = '---';
+    vyberRok.appendChild(defaultOption);
     for (let rok = aktualnyRok; rok >= 1970; rok--) {
         const volbaRoku = document.createElement('option');
         volbaRoku.value = rok.toString();
@@ -97,8 +101,13 @@ function applyFilters() {
     let categoryValue = document.getElementById("ciastkovaKniznica").value;
     let releaseYearValue = document.getElementById("rokVydania").value;
 
+    if (authorValues[0].value.trim() === "" && categoryValue === "empty" && releaseYearValue === "empty") {
+        alert("Hodnoty filtrov sú prázdne!");
+        return;
+    }
+
     let formData = {
-        authors: Array.from(authorValues).map(author => author.value),
+        authors: Array.from(authorValues).map(author => author.value.replace(/ /g, '_')),
         category: categoryValue,
         releaseYear: releaseYearValue
     };
@@ -113,7 +122,7 @@ function applyFilters() {
     })
         .then(response => response.json())
         .then(data => {
-            console.log(data);
+            window.location.href = data.redirect;
         })
         .catch(error => {
             console.error('Error:', error);

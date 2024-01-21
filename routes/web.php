@@ -33,6 +33,7 @@ Route::post('/libraryUpdate/{bookId}', 'App\Http\Controllers\LibraryController@u
 Route::post('/libraryDelete/{bookId}', 'App\Http\Controllers\LibraryController@deleteBook')->name('libraryDelete')->middleware('admin');
 Route::post('/library/search', 'App\Http\Controllers\LibraryController@searchBooks')->name('librarySearch');
 Route::post('/library/search/filters', 'App\Http\Controllers\LibraryController@searchBooksFilters')->name('librarySearch.filters');
+Route::get('/library/refresh', 'App\Http\Controllers\LibraryController@refresh')->name('library.refresh');
 
 Route::post('/buyBook/{userId}/{bookId}', 'App\Http\Controllers\LibraryController@buyBook')->name('buyBook');
 Route::post('/borrowBook/{userId}/{bookId}', 'App\Http\Controllers\LibraryController@borrowBook')->name('borrowBook');
